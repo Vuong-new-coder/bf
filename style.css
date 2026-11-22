@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('bckgrnd.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    perspective: 1000px;
+}
+.heart-fall {
+    position: fixed; /* Đổi từ absolute thành fixed */
+    top: -30px;      /* Bắt đầu từ ngay trên mép màn hình */
+    pointer-events: none;
+    z-index: 9999;   /* Nổi lên trên các nội dung khác */
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(105vh) rotate(360deg); /* Rơi hết chiều cao màn hình */
+    }
+}
+.card {
+    background: linear-gradient(135deg, #e0e6ff, #4c9aff);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(77, 231, 255, 0.2);
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    z-index: 10;
+    border: 2px solid #fff;
+    transform: translateY(0);
+    transition: all 0.5s ease;
+}
+.card:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 20px 40px rgba(165, 197, 255, 0.3);
+}
+.main-heart {
+    font-size: 60px;
+    color: #4db5ff;
+    cursor: pointer;
+    display: inline-block;
+    animation: beat 1.2s infinite;
+}
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+h1 {
+    color: #ffffff;
+    margin: 20px 0 15px;
+    font-size: 26px;
+}
+p {
+    color: #ffffff;
+    line-height: 1.2;
+    font-size: 18px;
+    font-weight: 1000px;
+    margin-bottom: 25px;
+}
+.btn {
+    background: #4d7aff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(77, 122, 255, 0.4);
+    transition: 0.3s;
+}
+.btn:hover {
+    background: #75b5ff;
+    transform: scale(1.2);
+}
+.hidden-message {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background: #f0f9ff;
+    border-left: 6px solid #767bfb;
+    border-radius: 10px;
+    color: #1873c9;
+    font-weight: 500;
+    animation: fadeIn 0.8s ease forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tsk {
+  width: 240px;
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  padding-left: 1%;
+  padding-right: 1%;
+  transition: transform 0.5s;
+}
+
+.tsk:hover {
+  transform: translateY(-10px);
+  background-color :rgba(200, 200, 200, 0.5);
+  backdrop-filter:blur(70px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.popup {
+  display: none; /* Mặc định ẩn */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  padding: 15px;
+  background: #505050;
+  color: #fff;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,2);
+  z-index: 1000;
+  font-size: 40px;
+}
+
+#close-btn {
+  margin-top: 10px;
+  padding: 10px 30px;
+  background: #fff;
+  color: #333;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+#popup-text {
+  white-space: pre-line;
+}

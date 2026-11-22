@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gửi Người bạn của tôi 🩵</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="card">
+            <div class="main-heart" onclick="createBurst()">✨</div>
+            <h1>Gửi người bạn thân nhất của tôi !</h1>
+            <p style="font-weight: 600;">T ko biết nói gì nhiều hơn ngoài việc muốn cho m biết rằng m là một người cực kỳ đặc biệt với t. Cảm ơn m vì đã luôn ở cạnh, lắng nghe và mang lại nhìu niềm vui, sự ấm áp cho t mỗi ngày. Có m đồng hành t thấy nhẹ lòng hơn hẳn á.</p>
+            <button class="btn" onclick="revealMessage()">Bấm vào đây đi</button>
+            <div class="hidden-message" id="secretMessage">
+                "Trân trọng m nhìu hơn hôm qua, đồng hành cùng m dài lâu hơn ngày mai! Mong rằng chúng mình sẽ mãi luôn bên nhau ✨🩵"
+            </div>
+        </div>
+        <br>  
+        <div style="display : flex; flex-direction: column; gap : 30px; padding-bottom: 10px;">
+            <div style="font-size: 30px; font-weight: 700;"></div>
+            <div class="tsk" data-message=" No Data ">
+                <h1>🩵</h1>
+            </div>
+            <div class="tsk" data-message=" No Data ">
+                <h1>✨</h1>
+            </div>
+            <div class="tsk" data-message=" No Data ">
+                <h1>🎀</h1>
+            </div>
+        </div>
+        <div id="simple-popup" class="popup">
+            <p id="popup-text"></p>
+            <button id="close-btn">Đóng</button>
+        </div>
+        <script>
+            const tskElements = document.querySelectorAll('.tsk');
+            const popup = document.getElementById('simple-popup');
+            const popupText = document.getElementById('popup-text');
+            const closeBtn = document.getElementById('close-btn');
+
+            tskElements.forEach((element) => {
+            element.addEventListener('click', () => {
+                const message = element.getAttribute('data-message');
+                popupText.innerText = message;
+                popup.style.display = 'block';
+            });
+            });
+
+            closeBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+            });
+
+            const icons = ['✨', '🎉', '🎄', '🎀', '💎', '🌻', '🌺', '🌹', '🍀', '💐', '🌸', '🏵️'];
+
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-fall');
+                
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                heart.innerText = randomIcon;
+                
+                heart.style.left = Math.random() * 100 + 'vw';
+                const size = Math.random() * 15 + 10;
+                heart.style.fontSize = size + 'px';
+                
+                const duration = Math.random() * 3 + 2; 
+                heart.style.animationDuration = duration + 's';
+                heart.style.opacity = Math.random() * 0.7 + 0.3;
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, duration * 1000);
+            }
+
+            setInterval(createHeart, 120);
+
+            function revealMessage() {
+                const message = document.getElementById('secretMessage');
+                if (message.style.display === 'block') {
+                    message.style.display = 'none';
+                } else {
+                    message.style.display = 'block';
+                    createBurst();
+                }
+            }
+
+            function createBurst() {
+                for (let i = 0; i < 25; i++) {
+                    setTimeout(createHeart, i * 40);
+                }
+            }
+        </script>
+    </body>
+</html>
